@@ -98,7 +98,8 @@ public class ReviewPageController {
         }
 
         model.addAttribute("reviews", responseDtoes);
-        return "review-community-test";
+        //return "review-community-test";
+        return "review-main";
     }
 
     // 검색기능 ->  검색시 리뷰의 타이틀, 내용, 관련 식당에 키워드가 있으면 표시
@@ -121,7 +122,7 @@ public class ReviewPageController {
         model.addAttribute("reviews", responseDtoes);
         model.addAttribute("keyword", keyword);
 
-        return "review-community-test";
+        return "review-main";
     }
 /*
     @GetMapping("/reviews/sorting")

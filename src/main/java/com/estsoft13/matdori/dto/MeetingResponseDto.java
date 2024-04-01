@@ -29,7 +29,7 @@ public class MeetingResponseDto {
     private String username;
     private Restaurant restaurant;
 
-    private Long user_id;
+    //private Long user_id;
     @Builder
     public MeetingResponseDto(Long id, String title, String content, Restaurant restaurant,
                               String location, LocalDateTime created_at, String username, String visitTime) {
