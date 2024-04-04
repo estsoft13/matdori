@@ -47,6 +47,11 @@ public class MeetingPageController {
     @GetMapping("/meeting/{meetingId}")
     public String showMeetingDetail(@PathVariable Long meetingId, Model model, @AuthenticationPrincipal User user) {
         //Review review = reviewService.findById(reviewId);
+
+        if (meetingId == null) {
+            return "mainMeetingPage";
+        }
+
         MeetingResponseDto responseDto = meetingService.findById(meetingId);
         model.addAttribute("meeting", responseDto);
 
