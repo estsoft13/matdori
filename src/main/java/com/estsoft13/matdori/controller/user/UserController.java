@@ -33,7 +33,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam("email") String email,
+    public String login( @RequestParam("email") String email,
                         @RequestParam("password") String password) {
         User user = userService.findByEmail(email);
         if (user != null && user.getPassword().equals(password)) {
@@ -129,7 +129,7 @@ public class UserController {
         }
     }
 
-        private String generateRandomPassword() {
+    private String generateRandomPassword() {
     return GeneratePassword.generateRandomPassword(8);
     }
 
