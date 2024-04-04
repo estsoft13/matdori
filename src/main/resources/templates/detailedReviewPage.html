@@ -103,9 +103,9 @@
                 <span th:text="${comment.content}" class="comment-content">댓글 내용</span>
                 <input type="text" class="comment-edit-field" name="content" th:value="${comment.content}" required
                        placeholder="Type here..." style="display: none;">
-                <button th:if="${isCommentOwner}" type="button" class="edit-comment-btn">edit</button>
+                <button th:if="${comment.isCommentOwner}" type="button" class="edit-comment-btn">edit</button>
                 <button type="button" class="save-comment-btn" style="display: none;">edit save</button>
-                <button th:if="${isCommentOwner}" type="button" class="delete-comment-btn">delete</button>
+                <button th:if="${comment.isCommentOwner}" type="button" class="delete-comment-btn">delete</button>
             </div>
         </div>
     </section>

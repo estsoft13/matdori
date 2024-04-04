@@ -34,10 +34,10 @@ public class AdminController {
     @PostMapping("/new")
     public String adminSignup(@ModelAttribute("userDto") UserDto userDto) {
         if (!userService.isEmailUnique(userDto.getEmail())) {
-            return "/new";
+            return "new";
         } else {
             userService.saveAdmin(userDto);
-            return "/login";
+            return "login";
         }
     }
 

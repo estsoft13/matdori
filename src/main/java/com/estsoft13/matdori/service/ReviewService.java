@@ -180,6 +180,9 @@ public class ReviewService {
             String imgName = "";
             String projectPath = System.getProperty("user.dir") + "/src/main/resources/static/files/"; // /static/files에 img 저장
 
+            // 배포시 사용(윗 라인 주석처리)
+            //String projectPath = "/home/ec2-user/files/";
+
             // UUID 를 이용하여 파일명 새로 생성
             // UUID - 서로 다른 객체들을 구별하기 위한 클래스
             UUID uuid = UUID.randomUUID();

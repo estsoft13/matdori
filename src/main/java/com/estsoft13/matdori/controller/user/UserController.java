@@ -59,10 +59,10 @@ public class UserController {
     @PostMapping("/signup")
     public String signup(@ModelAttribute("userDto") UserDto userDto) {
         if (!userService.isEmailUnique(userDto.getEmail())) {
-            return "/signup";
+            return "signup";
         } else {
             userService.saveUser(userDto);
-            return "/login";
+            return "login";
         }
     }
 

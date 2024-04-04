@@ -18,8 +18,7 @@ public class WebSecurityConfig {
     public WebSecurityCustomizer configure() { // 스프링시큐리티 비활성화
         return web -> web.ignoring().requestMatchers(toH2Console())
                 .requestMatchers("/static/**","/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html"
-                        ,"/error", "/api/restaurant", "/js/**", "/css/**", "/images/**"
-                        ,"/admin/new");
+                        ,"/error","/js/**", "/css/**", "/images/**","/admin/new");
     }
 
     /* 배포시 사용할 코드(위 메소드 주석처리)
@@ -27,7 +26,7 @@ public class WebSecurityConfig {
     public WebSecurityCustomizer configure() { // 스프링시큐리티 비활성화
 
         return (web) -> web.ignoring().requestMatchers("/static/**","/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html"
-                        ,"/error","/js/**", "/css/**", "/images/**");
+                        ,"/error","/js/**", "/css/**", "/images/**", "/admin/new");
     }
     */
 
@@ -36,7 +35,7 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests(auth ->
-                        auth.requestMatchers("/","/css/**", "/login", "/signup", "/forgot","/user", "/admin/new", "/reviews").permitAll()
+                        auth.requestMatchers("/files/**","/","/css/**", "/login", "/signup", "/forgot","/user", "/admin/new", "/reviews").permitAll()
                                 .requestMatchers("/admin/manage", "/restaurants").hasRole("ADMIN")
                                 .requestMatchers("/meetings").hasAnyRole("ASSOCIATE","MEMBER","ADMIN")
                                 .requestMatchers("/meeting/**").hasAnyRole("MEMBER","ADMIN")

@@ -7,7 +7,10 @@ import com.estsoft13.matdori.domain.User;
 import com.estsoft13.matdori.dto.comment.CommentResponseDto;
 import com.estsoft13.matdori.dto.review.ReviewResponseDto;
 import com.estsoft13.matdori.repository.CommentRepository;
-import com.estsoft13.matdori.service.*;
+import com.estsoft13.matdori.service.CommentService;
+import com.estsoft13.matdori.service.RestaurantService;
+import com.estsoft13.matdori.service.ReviewImageService;
+import com.estsoft13.matdori.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -64,20 +67,15 @@ public class ReviewPageController {
         List<ReviewImage> images = reviewImageService.findAllByReviewId(reviewId);
         model.addAttribute("images", images);
 
-        List<CommentResponseDto> comments = commentService.getAllCommentsOfReview(reviewId);
-        model.addAttribute("comments", comments);
-
         // 현재 로그인한 유저가 글을 등록한 유저인지 확인 후 글을 수정할 수 있게끔
         Long userId = user.getId();
         boolean isOwner = review.getUser().getId().equals(userId);
         model.addAttribute("isOwner", isOwner);
 
-        if (!comments.isEmpty()) {
-            comments.forEach(comment -> {
-                boolean isCommentOwner = comment.getUserId().equals(userId);
-                model.addAttribute("isCommentOwner", isCommentOwner); // CommentResponseDto에 isOwner 필드를 추가해야 합니다.
-            });
-        }
+        List<CommentResponseDto> comments = commentService.getAllCommentsOfReview(reviewId);
+        List<CommentResponseDto> commentWithOwnership = comments.stream()
+                .map(x -> new CommentResponseDto(x, x.getUserId().equals(userId))).toList();
+        model.addAttribute("comments", commentWithOwnership);
 
         return "detailedReviewPage";
     }
