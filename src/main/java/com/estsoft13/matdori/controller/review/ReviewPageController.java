@@ -67,7 +67,7 @@ public class ReviewPageController {
         Review review = reviewOptional.get();
         //조회수 up
         reviewService.countUpViewCount(reviewId);
-        review.setViewCount(review.getViewCount()+1);
+        review.setViewCount(review.getViewCount());
         model.addAttribute("review", review);
 
         // 리뷰에 등록된 이미지 불러오기

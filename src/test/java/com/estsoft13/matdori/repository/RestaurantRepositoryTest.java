@@ -3,6 +3,7 @@ package com.estsoft13.matdori.repository;
 import com.estsoft13.matdori.domain.Restaurant;
 import org.aspectj.lang.annotation.After;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +17,11 @@ class RestaurantRepositoryTest {
 
     @Autowired
     RestaurantRepository restaurantRepository;
+
+    @BeforeEach
+    public void setup() {
+        restaurantRepository.deleteAll();
+    }
 
     @AfterEach
     public void cleanup() {
@@ -50,10 +56,11 @@ class RestaurantRepositoryTest {
         String address = "서울시 강남구";
         String category = "한식";
 
-        restaurantRepository.save(new Restaurant(name, address, category));
+        Restaurant restaurant = new Restaurant(name, address, category);
+        restaurantRepository.save(restaurant);
 
         // when
-        restaurantRepository.deleteById(1L);
+        restaurantRepository.deleteById(restaurant.getId());
 
         // then
         assertEquals(restaurantRepository.findAll().size(), 0);

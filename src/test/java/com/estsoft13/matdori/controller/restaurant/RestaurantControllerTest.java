@@ -1,4 +1,4 @@
-package com.estsoft13.matdori.controller;
+package com.estsoft13.matdori.controller.restaurant;
 
 import com.estsoft13.matdori.domain.Restaurant;
 import com.estsoft13.matdori.dto.restaurant.UpdateRestRequestDto;
