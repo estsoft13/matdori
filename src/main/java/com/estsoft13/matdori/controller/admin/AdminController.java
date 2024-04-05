@@ -25,15 +25,18 @@ public class AdminController {
     private final UserService userService;
     private final AdminService adminService;
 
+    // 관리자 계정 생성 페이지 조회
     @GetMapping("/new")
     public String adminSignup(Model model){
         model.addAttribute("userDto", new UserDto());
         return "new";
     }
 
+    // 관리자 계정 생성 메서드
     @PostMapping("/new")
-    public String adminSignup(@ModelAttribute("userDto") UserDto userDto) {
+    public String adminSignup(@ModelAttribute("userDto") UserDto userDto, Model model) {
         if (!userService.isEmailUnique(userDto.getEmail())) {
+            model.addAttribute("error", "해당 이메일은 사용중입니다.");
             return "new";
         } else {
             userService.saveAdmin(userDto);
@@ -41,6 +44,7 @@ public class AdminController {
         }
     }
 
+    // 관리자 페이지 조회
     @GetMapping("/manage")
     public String showUsers(Model model) {
         List<User> users = userService.getAllUsers();
@@ -69,12 +73,14 @@ public class AdminController {
         return "manage";
     }
 
+    // 등급 업그레이드 메서드
     @PostMapping("/manage")
     public String upgradeRoles(@RequestParam Long userId, @RequestParam Role newRole) {
         userService.upgradeRoles(userId, newRole);
         return "redirect:/admin/manage";
     }
-
+    
+    // 계정 삭제 메서드
     @PostMapping("/delete")
     public String deleteUser(@RequestParam("userId") Long userId, HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

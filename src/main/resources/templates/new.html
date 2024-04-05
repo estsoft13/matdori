@@ -41,5 +41,13 @@
         </div>
     </div>
 </section>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var error = [[${error}]];
+    if (error) {
+        alert(error);
+    }
+    /*]]>*/
+</script>
 </body>
 </html>

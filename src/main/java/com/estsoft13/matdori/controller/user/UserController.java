@@ -27,66 +27,77 @@ public class UserController {
 
     private final UserService userService;
 
+    // 로그인 페이지 조회
     @GetMapping("/login")
     public String login() {
         return "login";   //login.html
     }
 
+    // 로그인 메서드
     @PostMapping("/login")
     public String login( @RequestParam("email") String email,
                         @RequestParam("password") String password) {
         User user = userService.findByEmail(email);
-        if (user != null && user.getPassword().equals(password)) {
-            return "redirect:/";
+        if (user != null && user.getPassword().equals(password)) {  // 사용자의 존재 여부 및 비밀번호 일치 여부 확인
+            return "redirect:/"; // 리뷰 페이지로 이동
         } else {
-            return "redirect:/login";
+            return "redirect:/login"; // 로그인 페이지로 이동
         }
     }
 
+    // 로그아웃 메서드
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) {
         new SecurityContextLogoutHandler().logout(request, response,
                 SecurityContextHolder.getContext().getAuthentication());
-        return "redirect:/login";
+        return "redirect:/login"; // 로그인 페이지로 이동
     }
 
+    // 회원가입 페이지 조회
     @GetMapping("/signup")
     public String signup(Model model) {
         model.addAttribute("userDto", new UserDto());
         return "signup";    // signup.html
     }
 
+    //회원가입 메서드
     @PostMapping("/signup")
-    public String signup(@ModelAttribute("userDto") UserDto userDto) {
-        if (!userService.isEmailUnique(userDto.getEmail())) {
+    public String signup(@ModelAttribute("userDto") UserDto userDto, Model model) {
+        if (!userService.isEmailUnique(userDto.getEmail())) { // 이메일 중복일 경우 회원가입 페이지로 이동
+            model.addAttribute("error", "해당 이메일은 사용중입니다.");
             return "signup";
         } else {
-            userService.saveUser(userDto);
+            userService.saveUser(userDto); //이메일 중복이 아닐 경우 로그인 페이지로 이동
             return "login";
         }
     }
 
+    // 비밀번호 찾기 페이지 조회
     @GetMapping("/forgot")
     public String forgot() {
         return "forgot";    // forgot.html
     }
 
+    // 비밀번호 찾기 메서드
     @PostMapping("/forgot")
     public ResponseEntity<?> resetPassword(@RequestParam("username") String username, @RequestParam("email") String email) {
         User user = userService.findByUsernameAndEmail(username, email);
         if (user != null) {
-            String newPassword = generateRandomPassword();
-            userService.resetPassword(user, newPassword);
-            return ResponseEntity.ok("newPassword=" + newPassword);
+            String newPassword = generateRandomPassword(); //임시 비밀번호 생성
+            userService.resetPassword(user, newPassword); //임시 비밀번호으로 초기화
+            return ResponseEntity.ok("newPassword=" + newPassword);  //임시 비밀번호 반환
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("해당 정보가 없습니다!");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("해당 정보가 없습니다!"); //에러 메세지 반환
         }
     }
 
+    // 마이페이지 조회
     @GetMapping("/change")
     public String myPage(){
             return "myPage";
     }
+
+    // 비밀번호 변경 메서드
     @PostMapping("/changePassword")
     public String changePassword(@RequestParam("password") String password,
                                  @RequestParam("newPassword") String newPassword,
@@ -110,6 +121,8 @@ public class UserController {
             return "myPage";
         }
     }
+
+    // 탈퇴하기 메서드
     @PostMapping("/remove")
     public String removeUser(@RequestParam("password") String password, Principal principal, HttpServletRequest request, HttpServletResponse response, Model model) {
         String email = principal.getName(); // 로그인한 사용자의 이메일을 가져옵니다.
@@ -129,6 +142,7 @@ public class UserController {
         }
     }
 
+    // 임시 비밀번호 생성 함수(길이 제한 = 8)
     private String generateRandomPassword() {
     return GeneratePassword.generateRandomPassword(8);
     }

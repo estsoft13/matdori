@@ -13,12 +13,12 @@
         <h1 class="h3 mb-3 fw-normal">LOGO</h1>
         <div class="form-floating">
           <label><strong>Email</strong></label>
-          <input type="email" class="form-control" name="email" placeholder="Enter Your email" th:value="${email}">
+          <input type="email" class="form-control" name="email" placeholder="Enter Your email" th:value="${email}" required>
 
         </div>
         <div class="form-floating">
           <label><strong>Password</strong></label>
-          <input type="password" class="form-control" name="password" placeholder="Enter Your Password" th:value="${password}">
+          <input type="password" class="form-control" name="password" placeholder="Enter Your Password" th:value="${password}" required>
 
         </div>
         <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button><br>
