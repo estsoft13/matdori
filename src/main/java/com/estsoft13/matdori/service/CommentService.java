@@ -81,13 +81,13 @@ public class CommentService {
         comment.update(requestDto.getContent());
         return comment.toResponse();
     }
-
-    public void deleteCommentOfReivew(Long reviewId, Long commentId) {
+    @Transactional
+    public void deleteCommentOfReview(Long reviewId, Long commentId) {
         Comment comment = commentRepository.findByIdAndReview_Id(commentId, reviewId).orElseThrow(
                 () -> new EntityNotFoundException("Review not found with id" + reviewId));
         commentRepository.delete(comment);
     }
-
+    @Transactional
     public void deleteCommentOfMeeting(Long meetingId, Long commentId) {
         Comment comment = commentRepository.findByIdAndMeeting_Id(commentId, meetingId).orElseThrow(
                 () -> new EntityNotFoundException("Review not found with id" + meetingId));

@@ -63,7 +63,7 @@ public class CommentController {
     @DeleteMapping("api/comment/review/{reviewId}/{commentId}")
     public ResponseEntity<Void> deleteCommentOfReview(@PathVariable Long reviewId,
                                                       @PathVariable Long commentId) {
-        commentService.deleteCommentOfReivew(reviewId, commentId);
+        commentService.deleteCommentOfReview(reviewId, commentId);
         return ResponseEntity.ok().build();
     }
 

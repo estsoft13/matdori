@@ -118,7 +118,7 @@ public class ReviewService {
                 .orElseThrow(() -> new EntityNotFoundException("리뷰를 찾을 수 없습니다."));
         Long restaurantId = review.getRestaurant().getId();
 
-        commentRepository.deleteByReview(review); // 리뷰 삭제 전 연결된 댓글 삭제
+        commentRepository.deleteByReview_Id(review.getId()); // 리뷰 삭제 전 연결된 댓글 삭제
         reviewImageRepository.deleteByReview(review); //리뷰 삭제전 연결된 리뷰 이미지 삭제
         reviewRepository.deleteById(reviewId); // 리뷰 삭제
 
