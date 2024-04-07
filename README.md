@@ -84,8 +84,8 @@ https://dbdiagram.io/d/65fd42f6ae072629ceb1274d
 <img src="./assets/db.png" width="100%">
 
 ## 8. API 명세
-[Swagger](http://43.202.207.158:8080/swagger-ui/index.html)
-[Notion-Api명세](https://www.notion.so/oreumi/API-92bc8b4dd74b4f67b48b21f6dce182a6)
+- [Swagger](http://43.202.207.158:8080/swagger-ui/index.html)
+- [Notion-Api명세](https://www.notion.so/oreumi/API-92bc8b4dd74b4f67b48b21f6dce182a6)
 
 ## 📌 9. 주요 기능
 ### 공통
