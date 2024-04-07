@@ -67,7 +67,7 @@
 └── README.md       # 프로젝트 README 파일
 ```
 ## 6. UI 설계
-https://www.figma.com/file/5fH89WuGk7gOUOeYj6DW4T/MATDORI?type=design&node-id=0-1&mode=design&t=opzCsn0Xf5dU5otQ-0
+[figma_link](https://www.figma.com/file/5fH89WuGk7gOUOeYj6DW4T/MATDORI?type=design&node-id=0-1&mode=design&t=opzCsn0Xf5dU5otQ-0)
 
 |||
 |-|-|
@@ -80,7 +80,7 @@ https://www.figma.com/file/5fH89WuGk7gOUOeYj6DW4T/MATDORI?type=design&node-id=0-
 |<img src="./assets/manage-user.png" width="100%">유저 관리 화면|
 
 ## 7. ERD 설계
-https://dbdiagram.io/d/65fd42f6ae072629ceb1274d
+[dbdiagram](https://dbdiagram.io/d/65fd42f6ae072629ceb1274d)
 <img src="./assets/db.png" width="100%">
 
 ## 8. API 명세
