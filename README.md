@@ -23,11 +23,11 @@
 - **Java** : <img src = "https://img.shields.io/badge/Java 17-007396?&logo=java&logoColor=white">
 - **IDE** : <img src = "https://img.shields.io/badge/Intellij Idea-000000?&logo=intellijidea&logoColor=white">
 - **Framework** : <img src = "https://img.shields.io/badge/Springboot 3.2.4-6DB33F?&logo=springboot&logoColor=white">
-- **Database** : <img src = "https://img.shields.io/badge/H2-4169E1?&logo=H2&logoColor=white">
+- **Database** : <img src = "https://img.shields.io/badge/H2-4169E1?&logo=H2&logoColor=white">, RDS MySQL
 - **Server** : <img src = "https://img.shields.io/badge/Amazon EC2-FF9900?&logo=amazonec2&logoColor=white">
 - **WS/WAS** : <img src = "https://img.shields.io/badge/Apachetomcat-F8DC75?&logo=apachetomcat&logoColor=white">
 - **Meeting** : <img src = "https://img.shields.io/badge/Discord-5865F2?&logo=discord&logoColor=white">, <a href="https://www.notion.so/oreumi/13-ad824ce6537d40ea965e67bef0a8988e?pvs=4"><img src = "https://img.shields.io/badge/Notion (Link)-000000?&logo=Notion&logoColor=white"> </a>
-- **Front-end** : <img src = "https://img.shields.io/badge/HTML-E34F26?&logo=html5&logoColor=white">, <img src = "https://img.shields.io/badge/CSS3-1572B6?&logo=css3&logoColor=white">, <img src = "https://img.shields.io/badge/Javascript-F7DF1E?&logo=javascript&logoColor=white">, <img src = "https://img.shields.io/badge/Bootstrap-7952B3?&logo=bootstrap&logoColor=white">
+- **Front-end** : <img src = "https://img.shields.io/badge/HTML-E34F26?&logo=html5&logoColor=white">, <img src = "https://img.shields.io/badge/CSS3-1572B6?&logo=css3&logoColor=white">, <img src = "https://img.shields.io/badge/Javascript-F7DF1E?&logo=javascript&logoColor=white">, <img src = "https://img.shields.io/badge/Bootstrap-7952B3?&logo=bootstrap&logoColor=white">, ThymeLeaf
 
 
 ### 🔨 프로젝트 구조
@@ -76,31 +76,32 @@
   - 작성 버튼
     - redirection : 작성 페이지
     - 작성 페이지
-      - 제목, 날짜, 내용, 방문 시간, 예상 대기 시간
+      - 제목, 날짜, 내 점수, 식당, 내용, 방문 시간, 예상 대기 시간
       - 등록 버튼
         - redirection -> 해당 글의 상세 페이지
         - dialog : '등록이 완료되었습니다.'
 - 리뷰 조회
-  - 모두 접근 가능
-  - 리뷰 배치 (15개)
-    - 인기 순 (상위 5개)
-    - 시간 순 (10개)
-  - 게시글 제목
+  - 모두 접근 가능 -> 비회원은 메인페이지만 접근 가능
+  - 리뷰 배치
+    - 최신순
+    - 평점순 
+    - 조회순 
+  - 리뷰의 "View Review" 버튼
     - redirection - > 해당 글의 상세 페이지
 - 리뷰 수정
-  - 회원 접근 가능
+  - 작성자만 접근 가능
   - 해당 글의 상세 페이지에 버튼 구현
   - 수정 버튼
     - redirection -> 해당 글의 수정 페이지
     - dialog : '수정이 완료되었습니다.'
 - 리뷰 삭제
-  - 회원 및 관리자 접근 가능
+  - 작성자 접근 가능
   - 해당 글의 상세 페이지에 버튼 구현
   - 삭제 버튼
     - redirection -> 리뷰 게시판
     - dialog : '삭제가 완료되었습니다.'
 - 리뷰 검색
-  - 조회시 업종, 별점, 지역별로도 조회 가능
+  - 조회시 키워드에 관한 리뷰 검색
 ### 모임 게시판
 - 모임 글 작성
     - 회원 접근 가능
@@ -147,16 +148,13 @@
     - redirection -> 로그인 페이지
   - signup
     - redirection -> 회원가입 페이지
+  - logout
+     - 페이지 왼쪽 하단에 logout 버튼
 - 회원 가입
   - 유저 이름
   - 이메일
   - 비밀번호
 - 로그인
-  - 로그인
-    - 이메일
-      - dialog :  ‘이메일 혹은 비밀번호를 잘못 입력하였습니다’ (틀릴 경우)
-    - 비밀번호
-      - dialog :  ‘이메일 혹은 비밀번호를 잘못 입력하였습니다’ (틀릴 경우)
-  - 비밀번호 찾기
 - 로그아웃
-  - redirection -> 리뷰 게시판
+- 비밀번호 찾기
+- 비밀번호 변경, 탈퇴
